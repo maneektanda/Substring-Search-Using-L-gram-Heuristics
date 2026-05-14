@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Substring Search Problem/1.0.0": {
+        "runtime": {
+          "Substring Search Problem.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Substring Search Problem/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
