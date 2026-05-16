@@ -21,8 +21,8 @@ public class SubstringSearch {
     // text is accessed via a function rather than array using Text.
     static public int NotSoNaiveHeuristicSubstringSearch(string pattern, Func<int, char> Text, int textLength, int optimalLgram)
     {
-        // Compute all Lgrams.
-        HashSet<string> lGrams = Lgrams(pattern, optimalLgram);
+        // Compute all pattern Lgrams.
+        HashSet<string> patternLgrams = Lgrams(pattern, optimalLgram);
 
         // A HashSet for each char in the pattern.
         var patternChars = new HashSet<char>(pattern);
@@ -49,8 +49,9 @@ public class SubstringSearch {
             // next unchecked char that's outside of the current window.
             string textLgram = GetTextLgram(textIndex, pattern.Length, optimalLgram, Text);
             
-            if (!lGrams.Contains(textLgram)) {
-                // Fast forward to second char of text Lgram.
+            // If the text Lgram doesn't even exist in the pattern. 
+            if (!patternLgrams.Contains(textLgram)) {
+                // Fast forward to the second char of the text Lgram.
                 moveForwardAmount = pattern.Length - optimalLgram + 2;
             }
 
