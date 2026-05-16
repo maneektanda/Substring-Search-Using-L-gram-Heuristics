@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Substring Search Problem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5cdd0091935cbf5ec56d00058e5df847797e14b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Substring Search Problem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Substring Search Problem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

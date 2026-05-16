@@ -1,6 +1,6 @@
 public class SubstringSearch {
 
-    // Returns the last index j where p[j] != t[i+j], or -1
+    // Returns the last index patternIndex where pattern[patternIndex] != Text(textIndex + patternIndex), or -1.
     static private int LastUnequalChar(string pattern, Func<int, char> Text, int textIndex)
     {
         // Iterate from end of the pattern to the start.
@@ -102,73 +102,26 @@ public class SubstringSearch {
 
 
 
-    // Returns the optimal value of l for the given pattern length m
+    // Returns the optimal Lgram length for the given pattern length.
     static public int OptimalL(int patternLength)
     {
-        // Implement your solution here
-        return 3;
+        switch (patternLength)
+        {
+            case <= 3:
+                return 1;
+            
+            case <= 12:
+                return 2;
+            
+            case <= 50:
+                return 3;
+            
+            case <= 175:
+                return 4;
+            
+            case > 175:
+                return 5;
+        }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // // Template implementation.
-    // // Returns the first index i where p == t[i..(i+p.Length)]
-    // // t is accessed via function rather than array
-    // static public int NotSoNaiveHeuristicSubstringSearch(string pattern, Func<int, char> Text, int textLength, int optimalLgram)
-    // {
-    //     // Modify this function to use l-grams
-
-    //     // A HashSet for each char in the pattern.
-    //     var patternChars = new HashSet<char>(pattern);
-
-    //     // The starting index for checking the text.
-    //     int textIndex = 0;
-
-    //     // The amount we can skip forward if the pattern isn't found.
-    //     int indiciesToSkip = 0;
-
-    //     // Keep looping while it's still possible for the pattern to be in the text.
-    //     while (textIndex <= textLength - pattern.Length) {
-
-    //         // Locate the last position of char inequality. Returns -1 if all chars equal i.e pattern is found.
-    //         // Index returned refers to the patterns' indicies, not the texts' indicies.
-    //         int lastUnequalIndex = LastUnequalChar(pattern, Text, textIndex);
-    //         if (lastUnequalIndex == -1) return textIndex;
-
-    //         // Skipping forward if last unequal char is not in the pattern.
-    //         if (!patternChars.Contains(Text(textIndex + lastUnequalIndex))) {
-
-    //             // Skip past the point where the char would be included in the next check.
-    //             indiciesToSkip = lastUnequalIndex + 1;
-    //         }
-
-    //         // If the unequal char is in the pattern, just move across one so we don't miss a possible match.
-    //         else {
-    //             indiciesToSkip = 1;
-    //         }
-
-    //         // Update the starting index for the next check.
-    //         textIndex += indiciesToSkip;
-    //     }
-    //     return -1;
-    // }
 }
 

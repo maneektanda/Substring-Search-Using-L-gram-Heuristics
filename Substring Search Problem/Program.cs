@@ -2,6 +2,7 @@
 {
     static void Main(string[] args)
     {
+
         // Start with an empty text string, this will be populated later with random chars.
         string text = "";
 
@@ -33,8 +34,8 @@
             return text[textIndex];
         }
 
-        // m will be the length of the pattern that we want to find in the text.
-        // n will be the length of the text.
+        // patternLength will be the length of the pattern that we want to find in the text.
+        // textLength will be the length of the text.
         int patternLength = 100;
         int textLength = 1000000;
 
@@ -61,48 +62,85 @@
         // no matches are found.
         int foundPattern = SubstringSearch.NotSoNaiveHeuristicSubstringSearch(pattern, Text, textLength, optimalLgram);
 
+
         Console.WriteLine();
         if (foundPattern == patternLocation)
         {
-            Console.WriteLine("p found at correct location");
+            Console.WriteLine("Pattern found at correct location.");
         } 
+        else if (foundPattern != -1)
+        {
+            Console.WriteLine("Pattern not found at correct location (may be due to random occurrence of pattern elsewhere).");
+            Console.WriteLine($"Pattern found at {foundPattern}.");
+        }
         else
         {
-            Console.WriteLine("p not found at correct locaiton (may be due to random occurrence of p elsewhere)");
+            Console.WriteLine("Pattern not found.");
         }
         Console.WriteLine();
-        Console.WriteLine($"Text accesses: {accessedIndices.Count()}");
-        
-        
+        Console.WriteLine($"Text accesses: {accessedIndices.Count()}.");
 
-        // Console.WriteLine();
-        // Console.WriteLine();
-        // Console.WriteLine("Pattern");
-        // for (int i = 0; i < pattern.Length; i++)
-        // {
-        //     Console.WriteLine($"{i} = {pattern[i]}");
-        // }
-        // Console.WriteLine($"patternLocation = {patternLocation}");
-        // Console.WriteLine();
 
-        // Console.WriteLine($"foundPattern = {foundPattern}");
 
-        // Console.WriteLine();
-        // Console.WriteLine("Text");
-        // bool found = false;
-        // int count = 0;
-        // for (int i = 0; i < text.Length; i++)
-        // {
-        //     if (i == foundPattern) found = true;
-        //     if (found && count < pattern.Length) {
-        //         Console.WriteLine($"{i} = {text[i]}  {pattern[count]}"); 
-        //         count ++;   
-        //     }
-        //     else {
-        //         Console.WriteLine($"{i} = {text[i]}");   
-        //     }
-        // }
-        // Console.WriteLine();
-        // Console.WriteLine();
+
+        // Returns the best Lgram length to use for a given pattern length.
+        void LgramTesting()
+        {
+            Console.WriteLine();
+            Console.Write($"Pattern Length = {patternLength}");
+
+            int minCount = int.MaxValue;
+            int bestLgram = patternLength;
+            for (int lGram = 0; lGram < patternLength; lGram++)
+            {
+                ResetHashSet();
+                int foundPattern = SubstringSearch.NotSoNaiveHeuristicSubstringSearch(pattern, Text, textLength, lGram);
+                if (accessedIndices.Count < minCount)
+                {
+                    minCount = accessedIndices.Count;
+                    bestLgram = lGram;    
+                }
+                
+            }
+            Console.WriteLine($" Best Lgram = {bestLgram} Text Length = {textLength}");
+            Console.WriteLine();
+        }
+
+
+
+
+        // Prints the text and highlights where the pattern has been found.
+        void PatternHighlighting()
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Pattern");
+            for (int i = 0; i < pattern.Length; i++)
+            {
+                Console.WriteLine($"{i} = {pattern[i]}");
+            }
+            Console.WriteLine($"patternLocation = {patternLocation}");
+            Console.WriteLine();
+
+            Console.WriteLine($"foundPattern = {foundPattern}");
+
+            Console.WriteLine();
+            Console.WriteLine("Text");
+            bool found = false;
+            int count = 0;
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (i == foundPattern) found = true;
+                if (found && count < pattern.Length) {
+                    Console.WriteLine($"{i} = {text[i]}  {pattern[count]}"); 
+                    count ++;   
+                }
+                else {
+                    Console.WriteLine($"{i} = {text[i]}");   
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+        }
     }
 }
